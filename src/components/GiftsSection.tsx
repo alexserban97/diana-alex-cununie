@@ -1,17 +1,24 @@
+
 import { useState } from "react";
-import { Gift, Heart } from "lucide-react";
+import { Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import GiftList from "./gifts/GiftList";
+import GiftReservationForm from "./gifts/GiftReservationForm";
+
+interface GiftItem {
+  name: string;
+  image?: string;
+  quantity?: number;
+  link?: string;
+  row: number;
+}
 
 const GiftsSection = () => {
   const [showGifts, setShowGifts] = useState(false);
-  const [gifts, setGifts] = useState<any[]>([]);
+  const [gifts, setGifts] = useState<GiftItem[]>([]);
   const [loading, setLoading] = useState(false);
   const [showForm, setShowForm] = useState(false);
-  const [selectedGift, setSelectedGift] = useState<any>(null);
-  const [formData, setFormData] = useState({ nume: "", email: "" });
+  const [selectedGift, setSelectedGift] = useState<GiftItem | null>(null);
   const [submitStatus, setSubmitStatus] = useState("");
 
   const loadProducts = async () => {
@@ -29,12 +36,10 @@ const GiftsSection = () => {
         throw new Error('Invalid data format received');
       }
 
-      // Filtrează doar produsele cu stoc > 0
-      const availableProducts = result.data.filter(product => product.quantity > 0);
+      const availableProducts = result.data.filter((product: GiftItem) => product.quantity > 0);
       setGifts(availableProducts);
     } catch (error) {
       console.error("Eroare la încărcarea produselor:", error);
-      // Fallback cu date mock pentru demonstrație
       setGifts([
         { name: "Set de vase", image: "https://via.placeholder.com/150", link: "#", row: 1, quantity: 1 },
         { name: "Aspirator robot", image: "https://via.placeholder.com/150", link: "#", row: 2, quantity: 1 },
@@ -50,17 +55,17 @@ const GiftsSection = () => {
     loadProducts();
   };
 
-  const selectGift = (gift: any) => {
+  const selectGift = (gift: GiftItem) => {
     setSelectedGift(gift);
     setShowForm(true);
-    // Scroll to form
     setTimeout(() => {
       document.getElementById('gift-form')?.scrollIntoView({ behavior: 'smooth' });
     }, 100);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleFormSubmit = async (formData: { nume: string; email: string }) => {
+    if (!selectedGift) return;
+    
     setSubmitStatus("Se trimite cererea...");
 
     try {
@@ -75,22 +80,19 @@ const GiftsSection = () => {
       });
 
       if (response.ok) {
-        // Actualizează stocul în Google Sheets
         await fetch(`https://script.google.com/macros/s/AKfycbzboWwo65m88MbnkL84gzzVgsNOy4A3Aep0jj27rvV3buwObMR45ofoSzIOh0KULBKtZQ/exec?action=updateStock&row=${selectedGift.row}`);
         
-        // Actualizează stocul local și elimină produsul dacă stocul ajunge la 0
         setGifts(prevGifts => {
           return prevGifts.map(gift => {
             if (gift.row === selectedGift.row) {
-              const newQuantity = gift.quantity - 1;
+              const newQuantity = gift.quantity! - 1;
               return { ...gift, quantity: newQuantity };
             }
             return gift;
-          }).filter(gift => gift.quantity > 0); // Elimină produsele cu stoc 0
+          }).filter(gift => gift.quantity! > 0);
         });
         
         setSubmitStatus("Cadoul a fost rezervat cu succes! Veți primi un email de confirmare.");
-        setFormData({ nume: "", email: "" });
         setTimeout(() => {
           setShowForm(false);
           setSelectedGift(null);
@@ -138,112 +140,18 @@ const GiftsSection = () => {
           </div>
         ) : (
           <div className="space-y-8">
-            {loading ? (
-              <div className="text-center">
-                <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-wedding-rose"></div>
-                <p className="mt-2">Se încarcă cadourile...</p>
-              </div>
-            ) : gifts.length === 0 ? (
-              <div className="text-center">
-                <p className="text-lg text-gray-600">Nu sunt cadouri disponibile momentan.</p>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {gifts.map((gift, index) => (
-                  <Card key={index} className="wedding-card p-6 text-center hover:scale-105 transition-transform duration-300">
-                    <img 
-                      src={gift.image || 'https://via.placeholder.com/150'} 
-                      alt={gift.name}
-                      className="w-full h-48 object-cover rounded-lg mb-4"
-                      loading="lazy"
-                    />
-                    <h3 className="font-playfair text-xl text-wedding-rose mb-3">
-                      {gift.name}
-                    </h3>
-                    {gift.quantity && (
-                      <p className="text-sm text-gray-500 mb-2">
-                        Disponibile: {gift.quantity}
-                      </p>
-                    )}
-                    {gift.link && (
-                      <a 
-                        href={gift.link} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-wedding-gold hover:underline block mb-3"
-                      >
-                        Vezi detalii
-                      </a>
-                    )}
-                    <Button
-                      onClick={() => selectGift(gift)}
-                      className="bg-wedding-gold hover:bg-wedding-gold/90 text-white w-full"
-                    >
-                      Rezervă Acest Cadou
-                    </Button>
-                  </Card>
-                ))}
-              </div>
-            )}
+            <GiftList 
+              gifts={gifts}
+              loading={loading}
+              onSelectGift={selectGift}
+            />
 
             {showForm && selectedGift && (
-              <Card id="gift-form" className="wedding-card max-w-md mx-auto p-8">
-                <div className="text-center mb-6">
-                  <Heart className="text-wedding-rose fill-current w-8 h-8 mx-auto mb-3" />
-                  <h3 className="font-playfair text-2xl text-wedding-rose mb-2">
-                    Rezervă Cadoul
-                  </h3>
-                  <p className="text-gray-600">
-                    <strong>{selectedGift.name}</strong>
-                  </p>
-                </div>
-
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <Label htmlFor="nume" className="text-gray-700">
-                      Numele Dvs:
-                    </Label>
-                    <Input
-                      id="nume"
-                      type="text"
-                      value={formData.nume}
-                      onChange={(e) => setFormData(prev => ({ ...prev, nume: e.target.value }))}
-                      required
-                      className="mt-1"
-                    />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="email" className="text-gray-700">
-                      Adresa de Email:
-                    </Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                      required
-                      className="mt-1"
-                    />
-                  </div>
-
-                  <Button
-                    type="submit"
-                    className="w-full bg-wedding-rose hover:bg-wedding-rose/90 text-white py-3"
-                  >
-                    Confirmă Rezervarea
-                  </Button>
-
-                  {submitStatus && (
-                    <p className={`text-center text-sm ${
-                      submitStatus.includes('succes') ? 'text-green-600' : 
-                      submitStatus.includes('eroare') ? 'text-red-600' : 'text-gray-600'
-                    }`}>
-                      {submitStatus}
-                    </p>
-                  )}
-                </form>
-              </Card>
+              <GiftReservationForm
+                selectedGift={selectedGift}
+                onSubmit={handleFormSubmit}
+                submitStatus={submitStatus}
+              />
             )}
           </div>
         )}
