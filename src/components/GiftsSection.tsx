@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Gift, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -30,15 +29,16 @@ const GiftsSection = () => {
         throw new Error('Invalid data format received');
       }
 
+      // Filtrează doar produsele cu stoc > 0
       const availableProducts = result.data.filter(product => product.quantity > 0);
       setGifts(availableProducts);
     } catch (error) {
       console.error("Eroare la încărcarea produselor:", error);
       // Fallback cu date mock pentru demonstrație
       setGifts([
-        { name: "Set de vase", image: "https://via.placeholder.com/150", link: "#", row: 1 },
-        { name: "Aspirator robot", image: "https://via.placeholder.com/150", link: "#", row: 2 },
-        { name: "Cafetieră", image: "https://via.placeholder.com/150", link: "#", row: 3 },
+        { name: "Set de vase", image: "https://via.placeholder.com/150", link: "#", row: 1, quantity: 1 },
+        { name: "Aspirator robot", image: "https://via.placeholder.com/150", link: "#", row: 2, quantity: 1 },
+        { name: "Cafetieră", image: "https://via.placeholder.com/150", link: "#", row: 3, quantity: 1 },
       ]);
     } finally {
       setLoading(false);
@@ -75,14 +75,25 @@ const GiftsSection = () => {
       });
 
       if (response.ok) {
-        // Actualizează stocul
+        // Actualizează stocul în Google Sheets
         await fetch(`https://script.google.com/macros/s/AKfycbzboWwo65m88MbnkL84gzzVgsNOy4A3Aep0jj27rvV3buwObMR45ofoSzIOh0KULBKtZQ/exec?action=updateStock&row=${selectedGift.row}`);
+        
+        // Actualizează stocul local și elimină produsul dacă stocul ajunge la 0
+        setGifts(prevGifts => {
+          return prevGifts.map(gift => {
+            if (gift.row === selectedGift.row) {
+              const newQuantity = gift.quantity - 1;
+              return { ...gift, quantity: newQuantity };
+            }
+            return gift;
+          }).filter(gift => gift.quantity > 0); // Elimină produsele cu stoc 0
+        });
         
         setSubmitStatus("Cadoul a fost rezervat cu succes! Veți primi un email de confirmare.");
         setFormData({ nume: "", email: "" });
         setTimeout(() => {
           setShowForm(false);
-          loadProducts(); // Reîncarcă produsele
+          setSelectedGift(null);
         }, 3000);
       } else {
         throw new Error('Eroare la server');
@@ -132,6 +143,10 @@ const GiftsSection = () => {
                 <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-wedding-rose"></div>
                 <p className="mt-2">Se încarcă cadourile...</p>
               </div>
+            ) : gifts.length === 0 ? (
+              <div className="text-center">
+                <p className="text-lg text-gray-600">Nu sunt cadouri disponibile momentan.</p>
+              </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {gifts.map((gift, index) => (
@@ -145,6 +160,11 @@ const GiftsSection = () => {
                     <h3 className="font-playfair text-xl text-wedding-rose mb-3">
                       {gift.name}
                     </h3>
+                    {gift.quantity && (
+                      <p className="text-sm text-gray-500 mb-2">
+                        Disponibile: {gift.quantity}
+                      </p>
+                    )}
                     {gift.link && (
                       <a 
                         href={gift.link} 
