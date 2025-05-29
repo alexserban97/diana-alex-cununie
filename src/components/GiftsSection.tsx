@@ -1,93 +1,45 @@
 
 import { useState } from "react";
-import { Card } from "@/components/ui/card";
+import { Gift, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Heart, Gift, Mail, User, ExternalLink } from "lucide-react";
-import { toast } from "sonner";
-
-interface GiftItem {
-  id: string;
-  name: string;
-  image: string;
-  link?: string;
-  quantity: number;
-  row: number;
-}
 
 const GiftsSection = () => {
   const [showGifts, setShowGifts] = useState(false);
-  const [gifts, setGifts] = useState<GiftItem[]>([]);
+  const [gifts, setGifts] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
-  const [selectedGift, setSelectedGift] = useState<GiftItem | null>(null);
   const [showForm, setShowForm] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: ""
-  });
+  const [selectedGift, setSelectedGift] = useState<any>(null);
+  const [formData, setFormData] = useState({ nume: "", email: "" });
+  const [submitStatus, setSubmitStatus] = useState("");
 
-  // Mock data for demonstration
-  const mockGifts: GiftItem[] = [
-    {
-      id: "1",
-      name: "Set de Vase din Ceramică",
-      image: "https://images.unsplash.com/photo-1586627544021-2850dd4e1d79?w=300",
-      link: "https://example.com",
-      quantity: 1,
-      row: 1
-    },
-    {
-      id: "2",
-      name: "Aspirator Robot",
-      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300",
-      link: "https://example.com",
-      quantity: 1,
-      row: 2
-    },
-    {
-      id: "3",
-      name: "Set de Cearceafuri de Lux",
-      image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=300",
-      link: "https://example.com",
-      quantity: 2,
-      row: 3
-    },
-    {
-      id: "4",
-      name: "Cafetieră Espresso",
-      image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=300",
-      link: "https://example.com",
-      quantity: 1,
-      row: 4
-    },
-    {
-      id: "5",
-      name: "Set de Prosoapele de Baie",
-      image: "https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=300",
-      link: "https://example.com",
-      quantity: 3,
-      row: 5
-    },
-    {
-      id: "6",
-      name: "Blender de Bucătărie",
-      image: "https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=300",
-      link: "https://example.com",
-      quantity: 1,
-      row: 6
-    }
-  ];
-
-  const loadGifts = async () => {
+  const loadProducts = async () => {
     setLoading(true);
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      const availableGifts = mockGifts.filter(gift => gift.quantity > 0);
-      setGifts(availableGifts);
+      const response = await fetch('https://script.google.com/macros/s/AKfycbzboWwo65m88MbnkL84gzzVgsNOy4A3Aep0jj27rvV3buwObMR45ofoSzIOh0KULBKtZQ/exec?t=' + Date.now());
+      
+      if (!response.ok) {
+        throw new Error(`Server returned ${response.status} status`);
+      }
+
+      const result = await response.json();
+      
+      if (!result?.data || !Array.isArray(result.data)) {
+        throw new Error('Invalid data format received');
+      }
+
+      const availableProducts = result.data.filter(product => product.quantity > 0);
+      setGifts(availableProducts);
     } catch (error) {
-      toast.error("Eroare la încărcarea cadourilor");
+      console.error("Eroare la încărcarea produselor:", error);
+      // Fallback cu date mock pentru demonstrație
+      setGifts([
+        { name: "Set de vase", image: "https://via.placeholder.com/150", link: "#", row: 1 },
+        { name: "Aspirator robot", image: "https://via.placeholder.com/150", link: "#", row: 2 },
+        { name: "Cafetieră", image: "https://via.placeholder.com/150", link: "#", row: 3 },
+      ]);
     } finally {
       setLoading(false);
     }
@@ -95,200 +47,185 @@ const GiftsSection = () => {
 
   const handleShowGifts = () => {
     setShowGifts(true);
-    loadGifts();
+    loadProducts();
   };
 
-  const selectGift = (gift: GiftItem) => {
+  const selectGift = (gift: any) => {
     setSelectedGift(gift);
     setShowForm(true);
+    // Scroll to form
+    setTimeout(() => {
+      document.getElementById('gift-form')?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+    setSubmitStatus("Se trimite cererea...");
+
     try {
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      toast.success("Cadoul a fost rezervat cu succes! Veți primi un email de confirmare.");
-      
-      // Update gift quantity
-      setGifts(prev => prev.map(gift => 
-        gift.id === selectedGift?.id 
-          ? { ...gift, quantity: gift.quantity - 1 }
-          : gift
-      ).filter(gift => gift.quantity > 0));
-      
-      // Reset form
-      setFormData({ name: "", email: "" });
-      setShowForm(false);
-      setSelectedGift(null);
+      const formDataToSend = new FormData();
+      formDataToSend.append('nume', formData.nume);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('cadou', selectedGift.name);
+
+      const response = await fetch("https://script.google.com/macros/s/AKfycbwcB8Rcr5NKur3dGOCbakFyUcU9Wj0mVhKC4AxQ2y6EiswsR6meprqfYVGgz7_4Yptv/exec", {
+        method: "POST",
+        body: formDataToSend
+      });
+
+      if (response.ok) {
+        // Actualizează stocul
+        await fetch(`https://script.google.com/macros/s/AKfycbzboWwo65m88MbnkL84gzzVgsNOy4A3Aep0jj27rvV3buwObMR45ofoSzIOh0KULBKtZQ/exec?action=updateStock&row=${selectedGift.row}`);
+        
+        setSubmitStatus("Cadoul a fost rezervat cu succes! Veți primi un email de confirmare.");
+        setFormData({ nume: "", email: "" });
+        setTimeout(() => {
+          setShowForm(false);
+          loadProducts(); // Reîncarcă produsele
+        }, 3000);
+      } else {
+        throw new Error('Eroare la server');
+      }
     } catch (error) {
-      toast.error("A apărut o eroare. Vă rugăm să încercați din nou.");
+      console.error("Eroare la trimitere:", error);
+      setSubmitStatus("A apărut o eroare. Vă rugăm să încercați din nou mai târziu.");
     }
   };
 
   return (
-    <section id="gifts" className="py-20 bg-white">
+    <section id="gifts" className="py-20 bg-wedding-cream">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="font-playfair text-4xl md:text-5xl text-wedding-rose mb-4">
-            Idei de Cadouri
-          </h2>
+        <div className="text-center mb-12">
           <div className="flex justify-center items-center gap-2 mb-6">
-            <div className="w-12 h-px bg-wedding-gold"></div>
-            <Heart className="text-wedding-rose fill-current w-5 h-5" />
-            <div className="w-12 h-px bg-wedding-gold"></div>
+            <Gift className="text-wedding-rose w-8 h-8" />
+            <h2 className="font-playfair text-4xl md:text-5xl text-wedding-rose">
+              Idei de Cadouri
+            </h2>
+            <Gift className="text-wedding-rose w-8 h-8" />
           </div>
           
-          <div className="max-w-3xl mx-auto text-gray-600 space-y-4">
+          <div className="max-w-4xl mx-auto text-lg text-gray-700 space-y-2">
             <p>Fără plic, fără presiune 😄</p>
             <p>Ne bucurăm enorm că veți fi alături de noi — și asta e tot ce contează!</p>
-            <p>
-              Nu avem nevoie de plic sau daruri, dar dacă vreți totuși să ne surprindeți cu ceva, 
-              am pregătit o listă cu lucruri care ne-ar prinde bine în noua noastră viață de "soț + soție".
+            <p>Nu avem nevoie de plic sau daruri, dar dacă vreți totuși să ne surprindeți cu ceva, am pregătit o listă cu lucruri care ne-ar prinde bine în noua noastră viață de "soț + soție".</p>
+            <p>Unele cadouri sunt mai costisitoare, dar pentru asta există prieteni – merge perfect și cu "cadou la comun"!</p>
+            <p className="font-great-vibes text-wedding-gold text-xl">
+              Luați-o ca pe o inspirație, nu ca pe o listă de cumpărături! 😉
             </p>
-            <p>
-              Unele cadouri sunt mai costisitoare, dar pentru asta există prieteni – 
-              merge perfect și cu "cadou la comun"!
-            </p>
-            <p>Luați-o ca pe o inspirație, nu ca pe o listă de cumpărături! 😉</p>
           </div>
         </div>
 
         {!showGifts ? (
           <div className="text-center">
-            <Button 
+            <Button
               onClick={handleShowGifts}
-              className="bg-wedding-rose hover:bg-wedding-rose-dark text-white px-8 py-3 text-lg"
+              className="bg-wedding-rose hover:bg-wedding-rose/90 text-white px-8 py-3 text-lg"
             >
-              <Gift className="w-5 h-5 mr-2" />
               Vezi ideile de cadouri
             </Button>
           </div>
         ) : (
-          <>
+          <div className="space-y-8">
             {loading ? (
-              <div className="text-center py-12">
+              <div className="text-center">
                 <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-wedding-rose"></div>
-                <p className="mt-4 text-gray-600">Se încarcă cadourile...</p>
+                <p className="mt-2">Se încarcă cadourile...</p>
               </div>
             ) : (
-              <>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
-                  {gifts.map((gift) => (
-                    <Card key={gift.id} className="wedding-card overflow-hidden group hover:shadow-xl transition-all duration-300">
-                      <div className="relative">
-                        <img 
-                          src={gift.image} 
-                          alt={gift.name}
-                          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                        {gift.quantity > 1 && (
-                          <div className="absolute top-2 right-2 bg-wedding-gold text-white text-xs px-2 py-1 rounded-full">
-                            {gift.quantity} disponibile
-                          </div>
-                        )}
-                      </div>
-                      
-                      <div className="p-4">
-                        <h3 className="font-playfair text-lg text-wedding-rose mb-2">{gift.name}</h3>
-                        
-                        {gift.link && (
-                          <a 
-                            href={gift.link} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800 mb-3 transition-colors"
-                          >
-                            Vezi detalii
-                            <ExternalLink className="w-3 h-3" />
-                          </a>
-                        )}
-                        
-                        <Button 
-                          onClick={() => selectGift(gift)}
-                          className="w-full bg-wedding-rose hover:bg-wedding-rose-dark text-white"
-                        >
-                          Rezervă Acest Cadou
-                        </Button>
-                      </div>
-                    </Card>
-                  ))}
-                </div>
-
-                {gifts.length === 0 && (
-                  <div className="text-center py-12">
-                    <p className="text-gray-600">Nu sunt cadouri disponibile momentan.</p>
-                  </div>
-                )}
-              </>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {gifts.map((gift, index) => (
+                  <Card key={index} className="wedding-card p-6 text-center hover:scale-105 transition-transform duration-300">
+                    <img 
+                      src={gift.image || 'https://via.placeholder.com/150'} 
+                      alt={gift.name}
+                      className="w-full h-48 object-cover rounded-lg mb-4"
+                      loading="lazy"
+                    />
+                    <h3 className="font-playfair text-xl text-wedding-rose mb-3">
+                      {gift.name}
+                    </h3>
+                    {gift.link && (
+                      <a 
+                        href={gift.link} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-wedding-gold hover:underline block mb-3"
+                      >
+                        Vezi detalii
+                      </a>
+                    )}
+                    <Button
+                      onClick={() => selectGift(gift)}
+                      className="bg-wedding-gold hover:bg-wedding-gold/90 text-white w-full"
+                    >
+                      Rezervă Acest Cadou
+                    </Button>
+                  </Card>
+                ))}
+              </div>
             )}
 
             {showForm && selectedGift && (
-              <Card className="wedding-card max-w-md mx-auto p-6">
-                <h3 className="font-playfair text-2xl text-wedding-rose mb-4 text-center">
-                  Rezervă Cadoul
-                </h3>
-                <p className="text-center text-gray-600 mb-6">
-                  <strong>{selectedGift.name}</strong>
-                </p>
-                
+              <Card id="gift-form" className="wedding-card max-w-md mx-auto p-8">
+                <div className="text-center mb-6">
+                  <Heart className="text-wedding-rose fill-current w-8 h-8 mx-auto mb-3" />
+                  <h3 className="font-playfair text-2xl text-wedding-rose mb-2">
+                    Rezervă Cadoul
+                  </h3>
+                  <p className="text-gray-600">
+                    <strong>{selectedGift.name}</strong>
+                  </p>
+                </div>
+
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="gift-name" className="flex items-center gap-2">
-                      <User className="w-4 h-4" />
-                      Numele Dvs
+                  <div>
+                    <Label htmlFor="nume" className="text-gray-700">
+                      Numele Dvs:
                     </Label>
                     <Input
-                      id="gift-name"
+                      id="nume"
                       type="text"
-                      value={formData.name}
-                      onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                      value={formData.nume}
+                      onChange={(e) => setFormData(prev => ({ ...prev, nume: e.target.value }))}
                       required
-                      className="border-wedding-rose/30 focus:border-wedding-rose"
+                      className="mt-1"
                     />
                   </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="gift-email" className="flex items-center gap-2">
-                      <Mail className="w-4 h-4" />
-                      Adresa de Email
+
+                  <div>
+                    <Label htmlFor="email" className="text-gray-700">
+                      Adresa de Email:
                     </Label>
                     <Input
-                      id="gift-email"
+                      id="email"
                       type="email"
                       value={formData.email}
                       onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                       required
-                      className="border-wedding-rose/30 focus:border-wedding-rose"
+                      className="mt-1"
                     />
                   </div>
-                  
-                  <div className="flex gap-3 pt-4">
-                    <Button 
-                      type="button"
-                      variant="outline"
-                      onClick={() => {
-                        setShowForm(false);
-                        setSelectedGift(null);
-                        setFormData({ name: "", email: "" });
-                      }}
-                      className="flex-1"
-                    >
-                      Anulează
-                    </Button>
-                    <Button 
-                      type="submit"
-                      className="flex-1 bg-wedding-rose hover:bg-wedding-rose-dark text-white"
-                    >
-                      Confirmă Rezervarea
-                    </Button>
-                  </div>
+
+                  <Button
+                    type="submit"
+                    className="w-full bg-wedding-rose hover:bg-wedding-rose/90 text-white py-3"
+                  >
+                    Confirmă Rezervarea
+                  </Button>
+
+                  {submitStatus && (
+                    <p className={`text-center text-sm ${
+                      submitStatus.includes('succes') ? 'text-green-600' : 
+                      submitStatus.includes('eroare') ? 'text-red-600' : 'text-gray-600'
+                    }`}>
+                      {submitStatus}
+                    </p>
+                  )}
                 </form>
               </Card>
             )}
-          </>
+          </div>
         )}
       </div>
     </section>
