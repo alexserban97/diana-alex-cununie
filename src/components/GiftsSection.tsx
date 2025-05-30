@@ -25,7 +25,7 @@ const GiftsSection = () => {
     console.log("Starting to load products...");
     
     try {
-      const response = await fetch('https://script.google.com/macros/s/AKfycbyj7aIVXTZ22RQCb8qrsbsLUTkVNKulLyqKkRulIMN5yRdGjXKWWJ86Mrlwp1N-PSOiQg/exec?t=' + Date.now());
+      const response = await fetch('https://script.google.com/macros/s/AKfycbwXV0x-KIROe702MNuxBT_iu_0n17Gacboju-qljTMOJNXt78Xlg00A3EUofa61kVIvjQ/exec?t=' + Date.now());
       
       console.log("Response status:", response.status, response.ok);
       
@@ -107,13 +107,13 @@ const GiftsSection = () => {
       formDataToSend.append('email', formData.email);
       formDataToSend.append('cadou', selectedGift.name);
 
-      const response = await fetch("https://script.google.com/macros/s/AKfycbwcB8Rcr5NKur3dGOCbakFyUcU9Wj0mVhKC4AxQ2y6EiswsR6meprqfYVGgz7_4Yptv/exec", {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbzlCErVeBIJMZhZ0ruxTAiu__c_Ly-Vyi_PA6JSolrM-E15DCsBTe8egQU-pM08Efox/exec", {
         method: "POST",
         body: formDataToSend
       });
 
       if (response.ok) {
-        await fetch(`https://script.google.com/macros/s/AKfycbyj7aIVXTZ22RQCb8qrsbsLUTkVNKulLyqKkRulIMN5yRdGjXKWWJ86Mrlwp1N-PSOiQg/exec?action=updateStock&row=${selectedGift.row}`);
+        await fetch(`https://script.google.com/macros/s/AKfycbwXV0x-KIROe702MNuxBT_iu_0n17Gacboju-qljTMOJNXt78Xlg00A3EUofa61kVIvjQ/exec?action=updateStock&row=${selectedGift.row}`);
         
         setGifts(prevGifts => {
           return prevGifts.map(gift => {
