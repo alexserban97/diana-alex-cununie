@@ -24,7 +24,7 @@ const GiftsSection = () => {
   const loadProducts = async () => {
     setLoading(true);
     try {
-      const response = await fetch('https://script.google.com/macros/s/AKfycbzboWwo65m88MbnkL84gzzVgsNOy4A3Aep0jj27rvV3buwObMR45ofoSzIOh0KULBKtZQ/exec?t=' + Date.now());
+      const response = await fetch('https://script.google.com/macros/s/AKfycbyj7aIVXTZ22RQCb8qrsbsLUTkVNKulLyqKkRulIMN5yRdGjXKWWJ86Mrlwp1N-PSOiQg/exec?t=' + Date.now());
       
       if (!response.ok) {
         throw new Error(`Server returned ${response.status} status`);
@@ -80,7 +80,7 @@ const GiftsSection = () => {
       });
 
       if (response.ok) {
-        await fetch(`https://script.google.com/macros/s/AKfycbzboWwo65m88MbnkL84gzzVgsNOy4A3Aep0jj27rvV3buwObMR45ofoSzIOh0KULBKtZQ/exec?action=updateStock&row=${selectedGift.row}`);
+        await fetch(`https://script.google.com/macros/s/AKfycbyj7aIVXTZ22RQCb8qrsbsLUTkVNKulLyqKkRulIMN5yRdGjXKWWJ86Mrlwp1N-PSOiQg/exec?action=updateStock&row=${selectedGift.row}`);
         
         setGifts(prevGifts => {
           return prevGifts.map(gift => {
