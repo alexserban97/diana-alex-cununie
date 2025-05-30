@@ -26,7 +26,6 @@ const GiftCard = ({ gift, onReserve }: GiftCardProps) => {
       </h3>
       {gift.quantity && (
         <p className="text-sm text-gray-500 mb-2">
-          Disponibile: {gift.quantity}
         </p>
       )}
       {gift.link && (
