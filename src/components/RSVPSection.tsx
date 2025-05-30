@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -19,6 +18,8 @@ const RSVPSection = () => {
     message: ""
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const cocktails = [
     "Mojito", "Pina Colada", "Margarita", "Cosmopolitan", 
     "Mai Tai", "Bloody Mary", "Daiquiri", "Whiskey Sour", 
@@ -36,24 +37,43 @@ const RSVPSection = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     
     try {
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      toast.success("RSVP-ul a fost trimis cu succes! Vă mulțumim pentru confirmare.");
-      
-      // Reset form
-      setFormData({
-        name: "",
-        email: "",
-        guests: "1",
-        events: "all-event",
-        cocktails: [],
-        message: ""
+      const response = await fetch("https://formspree.io/f/manelgvd", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          guests: formData.guests,
+          events: formData.events,
+          cocktails: formData.cocktails,
+          message: formData.message
+        }),
       });
+
+      if (response.ok) {
+        toast.success("RSVP-ul a fost trimis cu succes! Vă mulțumim pentru confirmare.");
+        
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          guests: "1",
+          events: "all-event",
+          cocktails: [],
+          message: ""
+        });
+      } else {
+        throw new Error("Failed to submit form");
+      }
     } catch (error) {
       toast.error("A apărut o eroare. Vă rugăm să încercați din nou.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -87,6 +107,7 @@ const RSVPSection = () => {
                   <Input
                     id="name"
                     type="text"
+                    name="name"
                     value={formData.name}
                     onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                     required
@@ -102,6 +123,7 @@ const RSVPSection = () => {
                   <Input
                     id="email"
                     type="email"
+                    name="_replyto"
                     value={formData.email}
                     onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                     required
@@ -116,7 +138,11 @@ const RSVPSection = () => {
                     <Users className="w-4 h-4" />
                     Numărul de invitați
                   </Label>
-                  <Select value={formData.guests} onValueChange={(value) => setFormData(prev => ({ ...prev, guests: value }))}>
+                  <Select 
+                    value={formData.guests} 
+                    onValueChange={(value) => setFormData(prev => ({ ...prev, guests: value }))}
+                    name="guest"
+                  >
                     <SelectTrigger className="border-wedding-rose/30 focus:border-wedding-rose">
                       <SelectValue />
                     </SelectTrigger>
@@ -131,7 +157,11 @@ const RSVPSection = () => {
                 
                 <div className="space-y-2">
                   <Label htmlFor="events">Voi participa la</Label>
-                  <Select value={formData.events} onValueChange={(value) => setFormData(prev => ({ ...prev, events: value }))}>
+                  <Select 
+                    value={formData.events} 
+                    onValueChange={(value) => setFormData(prev => ({ ...prev, events: value }))}
+                    name="events"
+                  >
                     <SelectTrigger className="border-wedding-rose/30 focus:border-wedding-rose">
                       <SelectValue />
                     </SelectTrigger>
@@ -151,6 +181,8 @@ const RSVPSection = () => {
                     <label key={cocktail} className="flex items-center space-x-2 cursor-pointer">
                       <input
                         type="checkbox"
+                        name="cocktails[]"
+                        value={cocktail}
                         checked={formData.cocktails.includes(cocktail)}
                         onChange={(e) => handleCocktailChange(cocktail, e.target.checked)}
                         className="rounded border-wedding-rose/30 text-wedding-rose focus:ring-wedding-rose"
@@ -165,6 +197,7 @@ const RSVPSection = () => {
                 <Label htmlFor="message">Mesajul Dvs</Label>
                 <Textarea
                   id="message"
+                  name="message"
                   value={formData.message}
                   onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
                   rows={4}
@@ -177,8 +210,9 @@ const RSVPSection = () => {
                 <Button 
                   type="submit" 
                   className="bg-wedding-rose hover:bg-wedding-rose-dark text-white px-8 py-3 text-lg"
+                  disabled={isSubmitting}
                 >
-                  Trimite RSVP
+                  {isSubmitting ? "Se trimite..." : "Trimite RSVP"}
                 </Button>
               </div>
             </form>
