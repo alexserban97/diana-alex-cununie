@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -23,30 +22,64 @@ const GiftsSection = () => {
 
   const loadProducts = async () => {
     setLoading(true);
+    console.log("Starting to load products...");
+    
     try {
       const response = await fetch('https://script.google.com/macros/s/AKfycbyj7aIVXTZ22RQCb8qrsbsLUTkVNKulLyqKkRulIMN5yRdGjXKWWJ86Mrlwp1N-PSOiQg/exec?t=' + Date.now());
+      
+      console.log("Response status:", response.status, response.ok);
       
       if (!response.ok) {
         throw new Error(`Server returned ${response.status} status`);
       }
 
       const result = await response.json();
+      console.log("Raw API response:", result);
       
       if (!result?.data || !Array.isArray(result.data)) {
+        console.error("Invalid data format. Expected result.data to be an array, got:", typeof result?.data);
         throw new Error('Invalid data format received');
       }
 
-      const availableProducts = result.data.filter((product: GiftItem) => product.quantity > 0);
+      console.log("Processing", result.data.length, "products");
+      
+      // Mapăm datele pentru a avea numele corect de proprietăți
+      const mappedProducts = result.data.map((product: any, index: number) => {
+        console.log(`Product ${index}:`, product);
+        
+        const mappedProduct = {
+          name: product["nume produs"] || product.name || "Produs fără nume",
+          image: product["link imagine produs"] || product.image,
+          quantity: product["cantitate disponibilă"] || product.quantity || 0,
+          link: product["link produs"] || product.link,
+          row: product.row || index + 2
+        };
+        
+        console.log(`Mapped product ${index}:`, mappedProduct);
+        return mappedProduct;
+      });
+
+      const availableProducts = mappedProducts.filter((product: GiftItem) => {
+        const isAvailable = product.quantity > 0;
+        console.log(`Product "${product.name}" available:`, isAvailable, `(quantity: ${product.quantity})`);
+        return isAvailable;
+      });
+      
+      console.log("Available products:", availableProducts);
       setGifts(availableProducts);
     } catch (error) {
       console.error("Eroare la încărcarea produselor:", error);
-      setGifts([
+      // Fallback data for testing
+      const fallbackData = [
         { name: "Set de vase", image: "https://via.placeholder.com/150", link: "#", row: 1, quantity: 1 },
         { name: "Aspirator robot", image: "https://via.placeholder.com/150", link: "#", row: 2, quantity: 1 },
         { name: "Cafetieră", image: "https://via.placeholder.com/150", link: "#", row: 3, quantity: 1 },
-      ]);
+      ];
+      console.log("Using fallback data:", fallbackData);
+      setGifts(fallbackData);
     } finally {
       setLoading(false);
+      console.log("Loading finished");
     }
   };
 
