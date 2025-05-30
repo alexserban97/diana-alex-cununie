@@ -149,7 +149,6 @@ const RSVPSection = () => {
                       <SelectItem value="1">Unul</SelectItem>
                       <SelectItem value="2">Doi</SelectItem>
                       <SelectItem value="3">Trei</SelectItem>
-                      <SelectItem value="4">Patru</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
