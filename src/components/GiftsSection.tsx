@@ -126,7 +126,7 @@ const GiftsSection = () => {
           }).filter(gift => gift.quantity! > 0);
         });
         
-        setSubmitStatus("Excelentă alegere! 💝 Ai primit un email de confirmare cu toate detaliile frumoase!");
+        setSubmitStatus("Excelentă alegere! 💝 Ai primit un email de confirmare cu toate detaliile!");
         setTimeout(() => {
           setShowForm(false);
           setSelectedGift(null);
