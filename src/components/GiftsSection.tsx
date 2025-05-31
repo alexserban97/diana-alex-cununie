@@ -108,7 +108,7 @@ const GiftsSection = () => {
       formDataToSend.append('cadou', selectedGift.name);
       formDataToSend.append('link', selectedGift.link || '');
 
-      const response = await fetch("https://script.google.com/macros/s/AKfycbw_2vH-jEa3eHUzK-kPKkGC5JCSA5sIwWDcXJa6ub03Sjr6N4K3LvCC7Na_LMp9Sa36/exec", {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbyKPQ2g2aMq3ue79IU_p1jVVUa0wRkkphfDdBok88p-qbiccfsjIxqFekGPK7kgZC7L/exec", {
         method: "POST",
         body: formDataToSend
       });
