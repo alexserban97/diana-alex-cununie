@@ -9,21 +9,46 @@ const GallerySection = () => {
 
   const filters = [
     { id: "all", label: "Toate" },
-    { id: "vacation", label: "Vacanțe" },
-    { id: "party", label: "Petreceri" },
-    { id: "ceremony", label: "Ceremonii" },
-    { id: "wedding", label: "Nuntă" }
+    { id: "simple", label: "Simple" },
+    { id: "funny", label: "Funny" },
+    { id: "petreceri", label: "Petreceri" },
+    { id: "vacante", label: "Vacanțe" }
   ];
 
   const photos = [
-    { id: 1, category: ["vacation", "ceremony"], src: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400", alt: "Vacation Photo 1" },
-    { id: 2, category: ["party", "wedding"], src: "https://images.unsplash.com/photo-1519741497674-611481863552?w=400", alt: "Party Photo 1" },
-    { id: 3, category: ["vacation"], src: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=400", alt: "Vacation Photo 2" },
-    { id: 4, category: ["party", "vacation"], src: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=400", alt: "Party Photo 2" },
-    { id: 5, category: ["vacation"], src: "https://images.unsplash.com/photo-1524863479829-916d8e77f114?w=400", alt: "Vacation Photo 3" },
-    { id: 6, category: ["wedding", "ceremony", "party"], src: "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=400", alt: "Wedding Photo 1" },
-    { id: 7, category: ["vacation"], src: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=400", alt: "Vacation Photo 4" },
-    { id: 8, category: ["wedding", "party"], src: "https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?w=400", alt: "Wedding Photo 2" },
+    // Simple folder photos
+    { id: 1, category: ["simple"], src: "/src/lib/images/simple/Simple 1.jpg", alt: "Simple Photo 1" },
+    { id: 2, category: ["simple"], src: "/src/lib/images/simple/Simple 2.jpg", alt: "Simple Photo 2" },
+    { id: 3, category: ["simple"], src: "/src/lib/images/simple/Simple 3.jpg", alt: "Simple Photo 3" },
+    { id: 4, category: ["simple"], src: "/src/lib/images/simple/Simple 4.jpg", alt: "Simple Photo 4" },
+    { id: 5, category: ["simple"], src: "/src/lib/images/simple/Simple 5.jpg", alt: "Simple Photo 5" },
+    { id: 6, category: ["simple"], src: "/src/lib/images/simple/Simple 6.jpg", alt: "Simple Photo 6" },
+    // Zona comentată pentru mai multe poze simple
+    // { id: X, category: ["simple"], src: "/src/lib/images/simple/Simple X.jpg", alt: "Simple Photo X" },
+
+    // Funny folder photos
+    { id: 7, category: ["funny"], src: "/src/lib/images/funny/Funny 1.jpg", alt: "Funny Photo 1" },
+    { id: 8, category: ["funny"], src: "/src/lib/images/funny/Funny 2.jpg", alt: "Funny Photo 2" },
+    { id: 9, category: ["funny"], src: "/src/lib/images/funny/Funny 3.jpg", alt: "Funny Photo 3" },
+    { id: 10, category: ["funny"], src: "/src/lib/images/funny/Funny 4.jpg", alt: "Funny Photo 4" },
+    // Zona comentată pentru mai multe poze funny
+    // { id: X, category: ["funny"], src: "/src/lib/images/funny/Funny X.jpg", alt: "Funny Photo X" },
+
+    // Petreceri folder photos
+    { id: 11, category: ["petreceri"], src: "/src/lib/images/petreceri/Petreceri 1.jpg", alt: "Petreceri Photo 1" },
+    { id: 12, category: ["petreceri"], src: "/src/lib/images/petreceri/Petreceri 2.jpg", alt: "Petreceri Photo 2" },
+    { id: 13, category: ["petreceri"], src: "/src/lib/images/petreceri/Petreceri 3.jpg", alt: "Petreceri Photo 3" },
+    { id: 14, category: ["petreceri"], src: "/src/lib/images/petreceri/Petreceri 4.jpg", alt: "Petreceri Photo 4" },
+    // Zona comentată pentru mai multe poze petreceri
+    // { id: X, category: ["petreceri"], src: "/src/lib/images/petreceri/Petreceri X.jpg", alt: "Petreceri Photo X" },
+
+    // Vacante folder photos
+    { id: 15, category: ["vacante"], src: "/src/lib/images/vacante/Vacante 1.jpg", alt: "Vacante Photo 1" },
+    { id: 16, category: ["vacante"], src: "/src/lib/images/vacante/Vacante 2.jpg", alt: "Vacante Photo 2" },
+    { id: 17, category: ["vacante"], src: "/src/lib/images/vacante/Vacante 3.jpg", alt: "Vacante Photo 3" },
+    { id: 18, category: ["vacante"], src: "/src/lib/images/vacante/Vacante 4.jpg", alt: "Vacante Photo 4" },
+    // Zona comentată pentru mai multe poze vacante
+    // { id: X, category: ["vacante"], src: "/src/lib/images/vacante/Vacante X.jpg", alt: "Vacante Photo X" },
   ];
 
   const filteredPhotos = activeFilter === "all" 
