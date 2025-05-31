@@ -1,11 +1,19 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Heart, Camera } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const GallerySection = () => {
   const [activeFilter, setActiveFilter] = useState("all");
+  const [currentCarouselIndex, setCurrentCarouselIndex] = useState(0);
 
   const filters = [
     { id: "all", label: "Toate" },
@@ -51,6 +59,36 @@ const GallerySection = () => {
     // { id: X, category: ["vacante"], src: "/src/lib/images/vacante/Vacante X.jpg", alt: "Vacante Photo X" },
   ];
 
+  // Get random photos for carousel (one from each category)
+  const getRandomPhotosForCarousel = () => {
+    const categories = ["simple", "funny", "petreceri", "vacante"];
+    const randomPhotos = [];
+    
+    categories.forEach(category => {
+      const categoryPhotos = photos.filter(photo => photo.category.includes(category));
+      if (categoryPhotos.length > 0) {
+        const randomIndex = Math.floor(Math.random() * categoryPhotos.length);
+        randomPhotos.push(categoryPhotos[randomIndex]);
+      }
+    });
+    
+    return randomPhotos;
+  };
+
+  const [carouselPhotos, setCarouselPhotos] = useState(getRandomPhotosForCarousel());
+
+  // Auto-change carousel every 3 seconds and refresh random photos
+  useEffect(() => {
+    if (activeFilter === "all") {
+      const interval = setInterval(() => {
+        setCarouselPhotos(getRandomPhotosForCarousel());
+        setCurrentCarouselIndex(prev => (prev + 1) % 4);
+      }, 3000);
+
+      return () => clearInterval(interval);
+    }
+  }, [activeFilter, photos]);
+
   const filteredPhotos = activeFilter === "all" 
     ? photos 
     : photos.filter(photo => photo.category.includes(activeFilter));
@@ -88,27 +126,55 @@ const GallerySection = () => {
           </div>
         </div>
 
-        {/* Photo Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredPhotos.map((photo, index) => (
-            <Card 
-              key={photo.id} 
-              className="overflow-hidden group hover:shadow-xl transition-all duration-300 animate-fade-in-up"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <div className="relative overflow-hidden">
-                <img 
-                  src={photo.src} 
-                  alt={photo.alt}
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                  <Camera className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-8 h-8" />
+        {/* Conditional rendering: Carousel for "all" or Photo Grid for specific categories */}
+        {activeFilter === "all" ? (
+          <div className="max-w-4xl mx-auto">
+            <Carousel className="w-full">
+              <CarouselContent>
+                {carouselPhotos.map((photo, index) => (
+                  <CarouselItem key={`${photo.id}-${currentCarouselIndex}`} className="md:basis-1/2 lg:basis-1/4">
+                    <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300 animate-fade-in">
+                      <div className="relative overflow-hidden">
+                        <img 
+                          src={photo.src} 
+                          alt={photo.alt}
+                          className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                          <Camera className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-8 h-8" />
+                        </div>
+                      </div>
+                    </Card>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+          </div>
+        ) : (
+          /* Photo Grid for specific categories */
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredPhotos.map((photo, index) => (
+              <Card 
+                key={photo.id} 
+                className="overflow-hidden group hover:shadow-xl transition-all duration-300 animate-fade-in-up"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="relative overflow-hidden">
+                  <img 
+                    src={photo.src} 
+                    alt={photo.alt}
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                    <Camera className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-8 h-8" />
+                  </div>
                 </div>
-              </div>
-            </Card>
-          ))}
-        </div>
+              </Card>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
