@@ -34,10 +34,10 @@ const GallerySection = () => {
     // { id: X, category: ["simple"], src: "/images/simple/Simple X.jpg", alt: "Simple Photo X" },
 
     // Funny folder photos
-    { id: 7, category: ["funny"], src: "/public/images/funny/Funny 1.jpg", alt: "Funny Photo 1" },
-    { id: 8, category: ["funny"], src: "/public/images/funny/Funny 2.jpg", alt: "Funny Photo 2" },
-    { id: 9, category: ["funny"], src: "/public/images/funny/Funny 3.jpg", alt: "Funny Photo 3" },
-    { id: 10, category: ["funny"], src: "/public/images/funny/Funny 4.jpg", alt: "Funny Photo 4" },
+    { id: 7, category: ["funny"], src: "/images/funny/Funny 1.jpg", alt: "Funny Photo 1" },
+    { id: 8, category: ["funny"], src: "/images/funny/Funny 2.jpg", alt: "Funny Photo 2" },
+    { id: 9, category: ["funny"], src: "/images/funny/Funny 3.jpg", alt: "Funny Photo 3" },
+    { id: 10, category: ["funny"], src: "/images/funny/Funny 4.jpg", alt: "Funny Photo 4" },
     // Zona comentată pentru mai multe poze funny
     // { id: X, category: ["funny"], src: "/images/funny/Funny X.jpg", alt: "Funny Photo X" },
 
