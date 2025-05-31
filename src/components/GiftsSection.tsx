@@ -152,7 +152,7 @@ const GiftsSection = () => {
             <Gift className="text-wedding-rose w-8 h-8" />
           </div>
           
-          <div className="max-w-4xl mx-auto text-lg text-gray-700 space-y-2">
+          <div className="max-w-4xl mx-auto text-lg text-gray-700 space-y-2 font-playfair">
             <p>Fără plic, fără presiune 😄</p>
             <p>Ne bucurăm enorm că veți fi alături de noi — și asta e tot ce contează!</p>
             <p>Nu avem nevoie de plic sau daruri, dar dacă vreți totuși să ne surprindeți cu ceva, am pregătit o listă cu lucruri care ne-ar prinde bine în noua noastră viață de "soț + soție".</p>
