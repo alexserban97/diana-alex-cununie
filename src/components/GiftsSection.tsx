@@ -106,7 +106,7 @@ const GiftsSection = () => {
       formDataToSend.append('nume', formData.nume);
       formDataToSend.append('email', formData.email);
       formDataToSend.append('cadou', selectedGift.name);
-      formDataToSend.append('link', selectedGift.link);
+      formDataToSend.append('link', selectedGift.link || '');
 
       const response = await fetch("https://script.google.com/macros/s/AKfycbw_2vH-jEa3eHUzK-kPKkGC5JCSA5sIwWDcXJa6ub03Sjr6N4K3LvCC7Na_LMp9Sa36/exec", {
         method: "POST",
@@ -126,11 +126,11 @@ const GiftsSection = () => {
           }).filter(gift => gift.quantity! > 0);
         });
         
-        setSubmitStatus("Cadoul a fost rezervat cu succes! Veți primi un email de confirmare.");
+        setSubmitStatus("Excelentă alegere! 💝 Ai primit un email de confirmare cu toate detaliile frumoase!");
         setTimeout(() => {
           setShowForm(false);
           setSelectedGift(null);
-        }, 3000);
+        }, 4000);
       } else {
         throw new Error('Eroare la server');
       }

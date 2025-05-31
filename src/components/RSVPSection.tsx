@@ -20,9 +20,20 @@ const RSVPSection = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const cocktails = [ "Aperol Spritz", "Limoncello Spritz", "Hugo Spritz", "Cuba Libre", "Rum Punch",
-    "Mojito", "Margarita", "Whiskey", "Vodka", "Jägermeister"
-    "Bere", "Vin Rose", "Vin Alb" 
+  const cocktails = [
+    "Aperol Spritz", 
+    "Limoncello Spritz", 
+    "Hugo Spritz", 
+    "Cuba Libre", 
+    "Rum Punch",
+    "Mojito", 
+    "Margarita", 
+    "Whiskey", 
+    "Vodka", 
+    "Jägermeister",
+    "Bere", 
+    "Vin Rose", 
+    "Vin Alb"
   ];
 
   const handleCocktailChange = (cocktail: string, checked: boolean) => {
