@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,7 +8,7 @@
     --background: 250 250 249;
     --foreground: 39 39 42;
 
-    --card: 255 234 208;
+    --card: 255 235 224;
     --card-foreground: 39 39 42;
 
     --popover: 255 255 255;
@@ -48,8 +49,8 @@
     --background: 9 9 11;
     --foreground: 250 250 250;
 
-    --card: 255 234 208;
-    --card-foreground: 250 250 250;
+    --card: 255 235 224;
+    --card-foreground: 39 39 42;
 
     --popover: 9 9 11;
     --popover-foreground: 250 250 250;
@@ -108,6 +109,7 @@
 
   .wedding-card {
     @apply bg-white/80 backdrop-blur-sm border border-white/20 shadow-lg rounded-xl;
+    background-color: rgb(255, 235, 224) !important;
   }
 
   .heart-decoration::before {
@@ -130,5 +132,19 @@
 @media (prefers-reduced-motion: reduce) {
   .parallax-bg {
     background-attachment: scroll;
+  }
+}
+
+/* Forțez culoarea cardurilor pentru toate dispozitivele */
+.bg-card {
+  background-color: rgb(255, 235, 224) !important;
+}
+
+/* Asigur că cardurile au culoarea corectă pe mobile */
+@media (max-width: 768px) {
+  .wedding-card,
+  .bg-card,
+  [class*="bg-card"] {
+    background-color: rgb(255, 235, 224) !important;
   }
 }
