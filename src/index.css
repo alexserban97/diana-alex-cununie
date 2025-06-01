@@ -141,7 +141,7 @@
 }
 
 .bg-background {
-  background-color: rgb(255, 235, 224) !important;
+  background-color: rgb(252, 244, 244) !important;
 }
 /* Asigur că cardurile au culoarea corectă pe mobile */
 @media (max-width: 768px) {
