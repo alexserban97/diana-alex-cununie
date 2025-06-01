@@ -5,7 +5,7 @@ import { MapPin, Calendar, Heart, Building, PartyPopper } from "lucide-react";
 const EventsSection = () => {
   const events = [
     {
-  title: "Petrecerea de Cununie",
+  title: "Cununie",
   date: "5-7 Septembrie 2025",
   location: "Busteni, Prahova, Vila Mama Jana",
   description: `Dragii noștri,
