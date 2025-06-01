@@ -81,7 +81,7 @@ const GallerySection = () => {
       const interval = setInterval(() => {
         setCarouselPhotos(getRandomPhotosForCarousel());
         setCurrentCarouselIndex(prev => (prev + 1) % 4);
-      }, 3000);
+      }, 1000);
 
       return () => clearInterval(interval);
     }
