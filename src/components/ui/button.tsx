@@ -9,7 +9,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "hover:bg-primary/90", // păstrăm doar hover-ul, restul e inline
+        default: "bg-primary text-primary-foreground hover:bg-primary/90",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
@@ -40,18 +40,11 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, style, ...props }, ref) => {
+  ({ className, variant, size, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button"
-
-    const defaultStyle =
-      variant === "default"
-        ? { backgroundColor: "#fff7f2", color: "#000" }
-        : {}
-
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
-        style={{ ...defaultStyle, ...style }}
         ref={ref}
         {...props}
       />
