@@ -4,52 +4,68 @@ import { MapPin, Calendar, Heart, Building, PartyPopper } from "lucide-react";
 
 const EventsSection = () => {
   const events = [
-    {
-  title: "Cununie",
+   {
+  title: "Petrecerea de Cununie",
   date: "5-7 Septembrie 2025",
   location: "Busteni, Prahova, Vila Mama Jana",
-  description: `Dragii noștri,
-Suntem bucuroși să vă împărtășim detaliile evenimentului nostru special care marchează începutul poveștii noastre împreună!
+  description: (
+    <div className="space-y-4 text-base leading-relaxed">
+      <p><strong>Dragii noștri,</strong></p>
+      <p>
+        Suntem bucuroși să vă împărtășim detaliile evenimentului nostru special care marchează începutul poveștii noastre împreună!
+      </p>
 
-Cununia civilă – Emoția primului „DA”
+      <p className="font-semibold">Cununia civilă – Emoția primului „DA”</p>
+      <p>🕐 <strong>Vineri, 5 Septembrie 2025, ora 13:00</strong></p>
+      <p>📍 Primăria Bușteni – Bulevardul Libertății 91, Bușteni</p>
+      <p>
+        Vă așteptăm cu mult drag să fiți alături de noi în momentul în care ne vom spune „DA” în fața ofițerului stării civile.
+        Va fi o ceremonie simplă, dar plină de emoție, unde prezența voastră va însemna enorm pentru noi.
+      </p>
 
-🕐 Vineri, 5 Septembrie 2025, ora 13:00
+      <p className="font-semibold">Petrecerea de cununie – 3 zile de poveste</p>
+      <p>📅 Vineri, 5 Septembrie – Duminică, 7 Septembrie</p>
+      <p>📍 La Vila Mama Jana – Strada Codrului 2C, Bușteni</p>
+      <p>
+        După ceremonie, dăm drumul la distracție într-o cabană situată la poalele munților Bucegi,
+        unde vom petrece împreună un weekend întreg.
+      </p>
+      <p>
+        Ne vom aduna pentru o masă festivă într-un cadru relaxat și plin de voie bună.
+        După ce ne încărcăm cu energie, seara continuă cu petrecere, dansuri și multe surprize.
+        Vom dansa până târziu și vom crea primele amintiri din acest weekend special.
+      </p>
 
-📍 Primăria Bușteni – Bulevardul Libertății 91, Bușteni
+      <p className="font-semibold">Sâmbătă – Zi de relaxare, jocuri și grătar</p>
+      <p>🌤 <strong>Dimineața:</strong> Timp liber și descoperiri</p>
+      <p>
+        Ziua de sâmbătă o dedicăm relaxării! Vă încurajăm să explorați zona, să vizitați obiectivele turistice
+        din apropiere sau pur și simplu să vă bucurați de natură și de liniște.
+      </p>
 
-Vă așteptăm cu mult drag să fiți alături de noi în momentul în care ne vom spune „DA” în fața ofițerului stării civile. Va fi o ceremonie simplă, dar plină de emoție, unde prezența voastră va însemna enorm pentru noi.
+      <p>🎲 <strong>După-amiază:</strong> Jocuri de societate & voie bună</p>
+      <p>
+        Ne adunăm cu toții pentru o porție serioasă de distracție – avem pregătite multe jocuri de grup.
+      </p>
 
-Petrecerea de cununie – 3 zile de poveste
+      <p>🔥 <strong>Seara:</strong> Grill & chill</p>
+      <p>
+        Sâmbăta o încheiem cu un grătar, unde toți punem câte puțin suflet și ne bucurăm împreună
+        de gustul unei seri relaxante, ca între prieteni.
+      </p>
 
-📅 Vineri, 5 Septembrie – Duminică, 7 Septembrie
-📍 La Vila Mama Jana – Strada Codrului 2C, Bușteni
-
-După ceremonie, dăm drumul la distracție într-o cabană situată la poalele munților Bucegi, unde vom petrece împreună un weekend întreg.
-
-Ne vom aduna pentru o masă festivă într-un cadru relaxat și plin de voie bună. După ce ne încărcăm cu energie, seara continuă cu petrecere, dansuri și multe surprize. Vom dansa până târziu și vom crea primele amintiri din acest weekend special.
-
-Sâmbătă – Zi de relaxare, jocuri și grătar
-
-🌤 Dimineața: Timp liber și descoperiri
-
-Ziua de sâmbătă o dedicăm relaxării! Vă încurajăm să explorați zona, să vizitați obiectivele turistice din apropiere sau pur și simplu să vă bucurați de natură și de liniște.
-
-🎲 După-amiază: Jocuri de societate & voie bună
-
-Ne adunăm cu toții pentru o porție serioasă de distracție – avem pregătite multe jocuri de grup.
-
-🔥 Seara: Grill & chill
-
-Sâmbăta o încheiem cu un grătar, unde toți punem câte puțin suflet și ne bucurăm împreună de gustul unei seri relaxante, ca între prieteni.
-
-Duminică – Brunch și rămas-bun
-
-🍳 Brunch de rămas-bun
-
-Încheiem acest weekend minunat cu un brunch delicios, numai bun pentru a mai sta la povești și pentru a ne lua rămas-bun pe îndelete.`,
+      <p className="font-semibold">Duminică – Brunch și rămas-bun</p>
+      <p>🍳 <strong>Brunch de rămas-bun</strong></p>
+      <p>
+        Încheiem acest weekend minunat cu un brunch delicios, numai bun pentru a mai sta la povești
+        și pentru a ne lua rămas-bun pe îndelete.
+      </p>
+    </div>
+  ),
   icon: <PartyPopper className="w-8 h-8 text-wedding-gold" />,
   bgColor: "from-wedding-gold/10 to-wedding-gold/5"
-}  ];
+}
+  ];
 
   return (
     <section id="events" className="py-20 wedding-gradient">
