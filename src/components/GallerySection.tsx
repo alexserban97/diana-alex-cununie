@@ -16,7 +16,7 @@ const GallerySection = () => {
 
   const filters = [
     { id: "all", label: "Toate" },
-    { id: "simple", label: "Simple" },
+    { id: "simple", label: "Romantic" },
     { id: "funny", label: "Funny" },
     { id: "petreceri", label: "Petreceri" },
     { id: "vacante", label: "Vacanțe" }
