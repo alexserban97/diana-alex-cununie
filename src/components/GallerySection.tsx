@@ -114,7 +114,7 @@ const GallerySection = () => {
                 onClick={() => setActiveFilter(filter.id)}
                 className={`transition-all duration-300 ${
                   activeFilter === filter.id 
-                    ? "bg-wedding-rose hover:bg-wedding-rose-dark text-white" 
+                    ? "bg-[#f4cccc] text-black hover:bg-[#f1baba]"
                     : "border-wedding-rose text-wedding-rose hover:bg-wedding-rose hover:text-white"
                 }`}
               >
