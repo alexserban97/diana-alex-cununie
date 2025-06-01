@@ -17,8 +17,8 @@ const CoupleSection = () => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Alex */}
+        <div className="flex justify-center items-center min-h-[60vh] px-4">
+          {/* Diana&Alex */}
           <Card className="wedding-card p-8 text-center group hover:shadow-xl transition-all duration-300">
             <div className="mb-6">
               <div className="w-48 h-48 mx-auto bg-gradient-to-br from-wedding-rose/20 to-wedding-gold/20 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
@@ -27,7 +27,7 @@ const CoupleSection = () => {
                 </div>
               </div>
             </div>
-            <h3 className="font-great-vibes text-3xl text-wedding-gold mb-4">Alex</h3>
+            <h3 className="font-great-vibes text-3xl text-wedding-gold mb-4">Diana & Alex</h3>
             <p className="text-gray-600 leading-relaxed">
               Buna ziua! Numele meu este Alex și îmi iau bibica de soție! 
               Sunt nerăbdător să încep această aventură minunată alături de Diana.
