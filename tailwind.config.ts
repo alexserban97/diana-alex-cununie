@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -71,7 +70,7 @@ export default {
 				wedding: {
 					rose: '#f58a77',
 					'rose-dark': '#e56b61',
-					gold: '#d4af37',
+					gold: '#FFEBE0',
 					cream: '#faf7f0',
 					sage: '#b5c99a',
 				}
