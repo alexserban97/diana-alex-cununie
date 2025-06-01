@@ -210,7 +210,7 @@ const RSVPSection = () => {
                   value={formData.message}
                   onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
                   rows={4}
-                  className="border-wedding-rose/30 focus:border-wedding-rose"
+                  className="border-wedding-rose/30 focus:border-wedding-rose placeholder-[#e99494]"
                   placeholder="Mesaj special pentru miri..."
                 />
               </div>
