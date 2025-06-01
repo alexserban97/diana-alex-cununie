@@ -8,7 +8,7 @@ const CoupleSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="font-playfair text-4xl md:text-5xl text-wedding-rose mb-4">
-            Mirii
+            Our story
           </h2>
           <div className="flex justify-center items-center gap-2">
             <div className="w-12 h-px bg-wedding-gold"></div>
