@@ -128,7 +128,9 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
-
+.placeholder-wedding-rose::placeholder {
+    color: #e99494;
+  }
 @media (prefers-reduced-motion: reduce) {
   .parallax-bg {
     background-attachment: scroll;
