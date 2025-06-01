@@ -9,7 +9,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "text-primary-foreground hover:bg-primary/90",
+        default: "hover:bg-primary/90", // am păstrat doar hover-ul din clasa originală, fundalul îl setăm inline
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
@@ -42,9 +42,16 @@ export interface ButtonProps
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button"
+
+    const style =
+      variant === "default"
+        ? { backgroundColor: "#fff7f2", color: "#000" }
+        : undefined
+
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
+        style={style}
         ref={ref}
         {...props}
       />
