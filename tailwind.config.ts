@@ -25,7 +25,7 @@ export default {
 			},
 			colors: {
 				border: 'hsl(var(--border))',
-				input: 'hsl(22,100%, 93%)',
+				input: 'hsl(0.06,1.00, 0.93)',
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
