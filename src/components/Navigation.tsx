@@ -41,13 +41,16 @@ const Navigation = () => {
     }`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center gap-2">
+          {/* Logo - now clickable */}
+          <button 
+            onClick={() => scrollToSection("home")}
+            className="flex items-center gap-2 hover:opacity-80 transition-opacity duration-200"
+          >
             <Heart className="text-wedding-rose fill-current w-6 h-6 animate-pulse" />
             <span className="font-great-vibes text-xl text-wedding-gold">
               Wonderful Wedding
             </span>
-          </div>
+          </button>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
