@@ -28,10 +28,28 @@ const CoupleSection = () => {
               </div>
             </div>
             <h3 className="font-great-vibes text-3xl text-wedding-gold mb-4">Diana & Alex</h3>
-            <p className="text-gray-600 leading-relaxed">
-              Buna ziua! Numele meu este Alex și îmi iau bibica de soție! 
-              Sunt nerăbdător să încep această aventură minunată alături de Diana.
-            </p>
+            <p className="text-gray-600 leading-relaxed space-y-4">
+  <span className="block mb-4">
+    Salut! Noi suntem Diana și Alex. Ne-am cunoscut în Statele Unite, iar primul nostru date a fost la Cascada Niagara – da, chiar acolo, țin minte că și vorbeam dacă primul date e aici, la următoarele tre’ să o duc pe lună cu Mustangul care nu era al meu.
+  </span>
+
+  <span className="block mb-4">
+    De atunci am tot descoperit lumea împreună, călătorind prin locuri noi, mereu cu chef de aventură și un apetit pe măsură.
+  </span>
+
+  <span className="block mb-4">
+    Iar într-o zi ne-am trezit logodiți în Mauritius, pe o plajă care nu era ca în reviste, pentru că cineva — nu dau nume, "Alex" — nu are răbdare deloc.
+  </span>
+
+  <span className="block mb-4">
+    Când nu ne facem planuri de plecat prin lume, ne bucurăm de lucruri simple: o masă gătită acasă, o poză reușită, o seară liniștită. Sau dimpotrivă — o petrecere mare cu oamenii noștri preferați.
+  </span>
+
+  <span className="block">
+    Asta urmează acum: o zi de neuitat, în care celebrăm începutul unei noi etape. Și suntem super bucuroși că faci parte din ea.
+  </span>
+</p>
+
           </Card>
         </div>
       </div>
