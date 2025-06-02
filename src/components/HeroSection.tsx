@@ -38,7 +38,7 @@ const HeroSection = () => {
           </p>
           
           {/* Subtitle */}
-          <p className="font-great-vibes text-xl text-wedding-gold max-w-2xl mx-auto">
+          <p className="font-great-vibes text-2xl text-wedding-gold max-w-2xl mx-auto">
             Vă invităm să fiți alături de noi în cea mai frumoasă zi din viața noastră
           </p>
         </div>
