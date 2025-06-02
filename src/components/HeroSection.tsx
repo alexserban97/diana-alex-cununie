@@ -34,7 +34,7 @@ const HeroSection = () => {
           
           {/* Location */}
           <p className="text-lg text-gray-600 mb-8">
-            Bucharest, România
+            Busteni, Prahova
           </p>
           
           {/* Subtitle */}
