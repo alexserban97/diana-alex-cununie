@@ -70,7 +70,7 @@ export default {
 				wedding: {
 					rose: '#f58a77',
 					'rose-dark': '#e56b61',
-					gold: '#b38600',
+					gold: '#8c6b00',
 					cream: '#faf7f0',
 					sage: '#b5c99a',
 				}
