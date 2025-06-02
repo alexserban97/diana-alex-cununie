@@ -16,7 +16,7 @@ const EventsSection = () => {
       </p>
 
       <p className="font-semibold">Cununia civilă – Emoția primului „DA”</p>
-      <p>🕐 <strong>Vineri, 5 Septembrie 2025, ora 13:00</strong></p>
+      <p>🕐 <strong>Vineri, 5 Septembrie 2025, ora 14:00</strong></p>
       <p>📍 Primăria Bușteni – Bulevardul Libertății 91, Bușteni</p>
       <p>
         Vă așteptăm cu mult drag să fiți alături de noi în momentul în care ne vom spune „DA” în fața ofițerului stării civile.
