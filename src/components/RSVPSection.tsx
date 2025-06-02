@@ -153,7 +153,7 @@ const RSVPSection = () => {
                     onValueChange={(value) => setFormData(prev => ({ ...prev, guests: value }))}
                     name="guest"
                   >
-                    <SelectTrigger className="border-wedding-rose/30 focus:border-wedding-rose">
+                    <SelectTrigger className="border-wedding-rose/30 focus:ring-wedding-rose">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
