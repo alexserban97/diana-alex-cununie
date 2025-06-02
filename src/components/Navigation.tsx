@@ -47,7 +47,7 @@ const Navigation = () => {
             className="flex items-center gap-2 hover:opacity-80 transition-opacity duration-200"
           >
             <Heart className="text-wedding-rose fill-current w-6 h-6 animate-pulse" />
-            <span className="font-great-vibes text-xl text-wedding-gold">
+            <span className="font-great-vibes text-2xl text-wedding-gold">
               Wonderful Wedding
             </span>
           </button>
