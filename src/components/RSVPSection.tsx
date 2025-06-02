@@ -171,14 +171,29 @@ const RSVPSection = () => {
                     onValueChange={(value) => setFormData(prev => ({ ...prev, events: value }))}
                     name="events"
                   >
-                    <SelectTrigger className="border-wedding-rose/30 focus:ring-wedding-rose">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all-event">Toate evenimentele</SelectItem>
-                      <SelectItem value="wedding-ceremony">Ceremonia de cununie</SelectItem>
-                      <SelectItem value="reception-party">Petrecerea de cununie</SelectItem>
-                    </SelectContent>
+                     <SelectTrigger className="border-wedding-rose/30 focus:ring-wedding-rose text-wedding-gold bg-wedding-cream">
+        <SelectValue placeholder="Selectează" />
+      </SelectTrigger>
+      <SelectContent className="bg-wedding-cream text-wedding-gold">
+        <SelectItem 
+          value="all-event" 
+          className="hover:bg-wedding-rose/10 data-[state=checked]:bg-wedding-rose/20"
+        >
+          Toate evenimentele
+        </SelectItem>
+        <SelectItem 
+          value="wedding-ceremony" 
+          className="hover:bg-wedding-rose/10 data-[state=checked]:bg-wedding-rose/20"
+        >
+          Ceremonia de cununie
+        </SelectItem>
+        <SelectItem 
+          value="reception-party" 
+          className="hover:bg-wedding-rose/10 data-[state=checked]:bg-wedding-rose/20"
+        >
+          Petrecerea de cununie
+                    </SelectItem>
+                  </SelectContent>
                   </Select>
                 </div>
               </div>
