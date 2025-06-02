@@ -171,13 +171,13 @@ const RSVPSection = () => {
                     onValueChange={(value) => setFormData(prev => ({ ...prev, events: value }))}
                     name="events"
                   >
-                    <SelectTrigger className="border-wedding-rose/30 focus:border-wedding-rose">
+                    <SelectTrigger className="border-wedding-rose/30 focus:ring-wedding-rose">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="all-event">Toate evenimentele</SelectItem>
                       <SelectItem value="wedding-ceremony">Ceremonia de cununie</SelectItem>
-                      <SelectItem value="reception-party">Petrecerea de recepție</SelectItem>
+                      <SelectItem value="reception-party">Petrecerea de cununie</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
