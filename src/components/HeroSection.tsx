@@ -29,7 +29,7 @@ const HeroSection = () => {
           
           {/* Date */}
           <p className="font-playfair text-2xl md:text-3xl text-gray-700 mb-4">
-            5<sup className="text-lg">th</sup> Septembrie, 2025
+            5<sup className="text-lg"></sup> Septembrie, 2025
           </p>
           
           {/* Location */}
@@ -39,7 +39,7 @@ const HeroSection = () => {
           
           {/* Subtitle */}
           <p className="font-great-vibes text-3xl text-wedding-gold max-w-2xl mx-auto">
-            Vă invităm să fiți alături de noi în una din cele mai frumoasă zile din viața noastră
+            Vă invităm să fiți alături de noi în una din cele mai frumoase zile din viața noastră
           </p>
         </div>
       </div>
