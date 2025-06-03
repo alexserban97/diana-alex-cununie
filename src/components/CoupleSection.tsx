@@ -33,7 +33,7 @@ const CoupleSection = () => {
 
 <p className="text-gray-600 leading-relaxed space-y-4">
   <span className="block mb-4">
-    Noi suntem Diana și Alex. Ne-am cunoscut în Statele Unite, iar primul nostru date a fost la Cascada Niagara – da, chiar acolo, țin minte că și vorbeam dacă primul date e aici, la următoarele tre’ să o duc pe lună cu Mustangul care nu era al meu.
+    Noi suntem Diana și Alex. Ne-am cunoscut în vara lui 2019 in Michigan, Statele Unite, iar primul nostru date a fost la Cascada Niagara – da, chiar acolo, țin minte că și vorbeam dacă primul date e aici, la următoarele trebuie să o duc pe lună cu Mustangul roșu, cu care am plimbat-o în vara aceea și care era împrumutat.
   </span>
 
   <span className="block mb-4">
@@ -41,11 +41,11 @@ const CoupleSection = () => {
   </span>
 
   <span className="block mb-4">
-    Iar într-o zi ne-am trezit logodiți în Mauritius, pe o plajă care nu era ca în reviste, pentru că cineva — nu dau nume, "Alex" — nu are răbdare deloc.
+   Și uite-așa, într-o zi ne-am trezit logodiți în Mauritius. Nu pe vreo plajă desprinsă din Pinterest, cu apusuri fabuloase și palmieri perfect aliniați, ci pe una liniștită, aproape pustie… pentru că cineva — nu dăm nume, dar începe cu “A” și se termină cu “lex” — n-a mai avut răbdare cu peisajele instagramabile și mi-a cerut mâna exact când emoțiile l-au luat prin surprindere. Stângaci și adorabil, mi-a spus: „Vrei să fii soția mea?”… iar eu, evident, n-am rezistat farmecului lui neplanificat.
   </span>
 
   <span className="block mb-4">
-    Când nu ne facem planuri de plecat prin lume, ne bucurăm de lucruri simple: o masă gătită acasă, o poză reușită, o seară liniștită. Sau dimpotrivă — o petrecere mare cu oamenii noștri preferați.
+    Când nu ne facem planuri de plecat prin lume, ne bucurăm de lucruri simple: o masă gătită acasă, o poză reușită, o seară liniștită. Sau dimpotrivă — o petrecere mare cu oamenii noștri dragi.
   </span>
 
   <span className="block">
