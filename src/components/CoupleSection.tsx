@@ -27,12 +27,13 @@ const CoupleSection = () => {
                 </div>
               </div>
             </div>
-            <h3 className="font-great-vibes text-3xl text-wedding-gold mb-4">Diana & Alex</h3>
-            <p className="text-gray-600 leading-relaxed space-y-4">
-            <h3 className="font-great-vibes text-2xl text-wedding-gold mb-4">Holiday romance turned forever</h3>
-            <p className="text-gray-600 leading-relaxed space-y-4">
+<h3 className="font-great-vibes text-3xl text-wedding-gold mb-4">Diana & Alex</h3>
+
+<h3 className="font-great-vibes text-2xl text-wedding-gold mb-4">Holiday romance turned forever</h3>
+
+<p className="text-gray-600 leading-relaxed space-y-4">
   <span className="block mb-4">
-    Salut! Noi suntem Diana și Alex. Ne-am cunoscut în Statele Unite, iar primul nostru date a fost la Cascada Niagara – da, chiar acolo, țin minte că și vorbeam dacă primul date e aici, la următoarele tre’ să o duc pe lună cu Mustangul care nu era al meu.
+    Noi suntem Diana și Alex. Ne-am cunoscut în Statele Unite, iar primul nostru date a fost la Cascada Niagara – da, chiar acolo, țin minte că și vorbeam dacă primul date e aici, la următoarele tre’ să o duc pe lună cu Mustangul care nu era al meu.
   </span>
 
   <span className="block mb-4">
