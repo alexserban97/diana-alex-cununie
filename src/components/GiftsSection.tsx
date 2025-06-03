@@ -154,7 +154,7 @@ const GiftsSection = () => {
             <p>Nu avem nevoie de plic, dar dacă vreți totuși să ne surprindeți cu ceva, am pregătit o listă cu lucruri care ne-ar prinde bine în noua noastră viață de "soț + soție".</p>
             <p>Unele cadouri sunt mai costisitoare, dar pentru asta există prieteni – merge perfect și cu "cadou la comun"!</p>
             <p className="font-great-vibes text-wedding-gold text-2xl">
-           Lista este doar inspirație, nu obligație.
+           Lista este doar ca inspirație, nu obligație.
             </p>
           </div>
         </div>
