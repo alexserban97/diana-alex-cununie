@@ -17,16 +17,22 @@ const CoupleSection = () => {
           </div>
         </div>
 
-        <div className="flex justify-center items-center min-h-[60vh] px-4">
-          {/* Diana&Alex */}
-          <Card className="wedding-card p-8 text-center group hover:shadow-xl transition-all duration-300">
-            <div className="mb-6">
-              <div className="w-48 h-48 mx-auto bg-gradient-to-br from-wedding-rose/20 to-wedding-gold/20 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                <div className="w-40 h-40 bg-gray-200 rounded-full flex items-center justify-center">
-                  <span className="text-6xl">👩🏻‍❤️‍👨🏻</span>
-                </div>
-              </div>
-            </div>
+       <div className="flex justify-center items-center min-h-[60vh] px-4">
+  {/* Diana&Alex */}
+  <Card className="wedding-card p-8 text-center group hover:shadow-xl transition-all duration-300">
+    <div className="mb-6">
+      <div className="w-48 h-48 mx-auto bg-gradient-to-br from-wedding-rose/20 to-wedding-gold/20 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+        <div className="w-40 h-40 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden">
+          <img
+            src="/images/Center.jpg"
+            alt="Diana și Alex"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  </Card>
+</div>
 <h3 className="font-great-vibes text-3xl text-wedding-gold mb-4">Diana & Alex</h3>
 
 <h3 className="font-great-vibes text-2xl text-wedding-gold mb-4">Holiday romance turned forever</h3>
