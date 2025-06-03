@@ -146,10 +146,6 @@ const GiftsSection = () => {
         <div className="text-center mb-12">
           <div className="flex justify-center items-center gap-2 mb-6">
             <Gift className="text-wedding-rose w-8 h-8" />
-            <h2 className="font-playfair text-4xl md:text-5xl text-wedding-rose">
-              Idei de Cadouri
-            </h2>
-            <Gift className="text-wedding-rose w-8 h-8" />
           </div>
           
           <div className="max-w-4xl mx-auto text-lg text-gray-700 space-y-2 font-playfair">
