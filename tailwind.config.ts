@@ -22,6 +22,7 @@ export default {
 				'great-vibes': ['Great Vibes', 'cursive'],
 				'dosis': ['Dosis', 'sans-serif'],
 				'playfair': ['Playfair Display', 'serif'],
+				'font-family': ['Roboto', 'sans-serif'];
 			},
 			colors: {
 				border: 'hsl(var(--border))',
