@@ -9,7 +9,7 @@ const EventsSection = () => {
   date: "5-7 Septembrie 2025",
   location: "Busteni, Prahova, Vila Mama Jana",
   description: (
-    <div className="space-y-4 text-base leading-relaxed">
+    <div className="space-y-4 text-base leading-relaxed font-roboto">
       <p><strong>Dragii noștri,</strong></p>
       <p>
         Suntem bucuroși să vă împărtășim detaliile evenimentului nostru special care marchează începutul poveștii noastre împreună!
