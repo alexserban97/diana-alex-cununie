@@ -48,7 +48,7 @@ const Navigation = () => {
           >
             <Heart className="text-wedding-rose fill-current w-6 h-6 animate-pulse" />
             <span className="font-great-vibes text-2xl text-wedding-gold">
-              Wonderful Wedding
+              Cununie Civilă
             </span>
           </button>
 
