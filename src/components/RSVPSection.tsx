@@ -101,8 +101,8 @@ const RSVPSection = () => {
             <div className="w-12 h-px bg-wedding-gold"></div>
           </div>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Vă rugăm să confirmați prezența până pe 1 August 2025. 
-            Abia așteptăm să sărbătorim împreună!
+            Așteptăm confirmarea prezenței voastre până pe 1 August 2025. 
+            Suntem nerăbdători să sărbătorim împreună!
           </p>
         </div>
 
