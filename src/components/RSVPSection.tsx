@@ -33,7 +33,8 @@ const RSVPSection = () => {
     "Jägermeister",
     "Bere", 
     "Vin Rose", 
-    "Vin Alb"
+    "Vin Alb",
+    "Altceva (adaugă în mesaj)"
   ];
 
   const handleCocktailChange = (cocktail: string, checked: boolean) => {
@@ -241,7 +242,7 @@ const RSVPSection = () => {
                   onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
                   rows={4}
                   className="border-wedding-rose/30 focus:border-wedding-rose placeholder-wedding-rose"
-                  placeholder="Mesaj special pentru miri..."
+                  placeholder="Mesaj..."
                 />
               </div>
 
