@@ -7,7 +7,7 @@ const EventsSection = () => {
    {
   title: "Petrecerea de Cununie",
   date: "5-7 Septembrie 2025",
-  location: "Busteni, Prahova, Vila Mama Jana",
+  location: "Bușteni, Prahova, Vila Mama Jana",
   description: (
     <div className="space-y-4 text-base leading-relaxed font-roboto">
       <p><strong>Dragii noștri,</strong></p>
@@ -36,16 +36,16 @@ const EventsSection = () => {
         Vom dansa până târziu și vom crea primele amintiri din acest weekend special.
       </p>
 
-      <p className="font-semibold">Sâmbătă – Zi de relaxare, jocuri și grătar</p>
+      <p className="font-semibold">Sâmbătă – Zi de relaxare, jocuri, grătar și socializare</p>
       <p>🌤 <strong>Dimineața:</strong> Timp liber și descoperiri</p>
       <p>
         Ziua de sâmbătă o dedicăm relaxării! Vă încurajăm să explorați zona, să vizitați obiectivele turistice
-        din apropiere sau pur și simplu să vă bucurați de natură și de liniște.
+        din apropiere sau pur și simplu să vă bucurați de natură și de liniște, eventual cu un pahar de bere în mână.
       </p>
 
       <p>🎲 <strong>După-amiază:</strong> Jocuri de societate & voie bună</p>
       <p>
-        Ne adunăm cu toții pentru o porție serioasă de distracție – avem pregătite multe jocuri de grup.
+        Ne adunăm cu toții pentru o porție serioasă de distracție – avem multe jocuri de societate.
       </p>
 
       <p>🔥 <strong>Seara:</strong> Grill & chill</p>
