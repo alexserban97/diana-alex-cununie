@@ -25,8 +25,17 @@ const EventsSection = () => {
 
       <p className="font-semibold">Petrecerea de cununie – 3 zile de poveste</p>
       <p>📅 Vineri, 5 Septembrie – Duminică, 7 Septembrie</p>
-      <p>📍 La Vila Mama Jana – Strada Codrului 2C, Bușteni</p>
-      
+      <p>
+  📍{" "}
+  <a
+    href="https://maps.app.goo.gl/A3t84yUgShjbjb3B8"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-wedding-gold underline hover:text-wedding-gold/80"
+  >
+    La Vila Mama Jana – Strada Codrului 2C, Bușteni
+  </a>
+</p>  
       <p className="font-semibold">Vineri – Ceremonie Civilă și Petrecere</p>
       <p>
         După ceremonie, dăm drumul la distracție într-o cabană situată la poalele munților Bucegi,
