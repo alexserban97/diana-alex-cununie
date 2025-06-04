@@ -30,6 +30,66 @@ export type Database = {
         }
         Relationships: []
       }
+      all_visits: {
+        Row: {
+          browser: string | null
+          city: string | null
+          country: string | null
+          device_type: string | null
+          id: string
+          ip_address: unknown | null
+          language: string | null
+          operating_system: string | null
+          page_url: string | null
+          referrer: string | null
+          screen_resolution: string | null
+          session_end: string | null
+          session_id: string | null
+          session_start: string | null
+          user_agent: string | null
+          visited_at: string
+          visitor_id: string | null
+        }
+        Insert: {
+          browser?: string | null
+          city?: string | null
+          country?: string | null
+          device_type?: string | null
+          id?: string
+          ip_address?: unknown | null
+          language?: string | null
+          operating_system?: string | null
+          page_url?: string | null
+          referrer?: string | null
+          screen_resolution?: string | null
+          session_end?: string | null
+          session_id?: string | null
+          session_start?: string | null
+          user_agent?: string | null
+          visited_at?: string
+          visitor_id?: string | null
+        }
+        Update: {
+          browser?: string | null
+          city?: string | null
+          country?: string | null
+          device_type?: string | null
+          id?: string
+          ip_address?: unknown | null
+          language?: string | null
+          operating_system?: string | null
+          page_url?: string | null
+          referrer?: string | null
+          screen_resolution?: string | null
+          session_end?: string | null
+          session_id?: string | null
+          session_start?: string | null
+          user_agent?: string | null
+          visited_at?: string
+          visitor_id?: string | null
+        }
+        Relationships: []
+      }
       page_visits: {
         Row: {
           browser: string | null
@@ -72,12 +132,91 @@ export type Database = {
         }
         Relationships: []
       }
+      visits_all_time: {
+        Row: {
+          browser: string | null
+          city: string | null
+          country: string | null
+          device_type: string | null
+          id: string
+          ip_address: unknown | null
+          language: string | null
+          operating_system: string | null
+          page_url: string | null
+          referrer: string | null
+          screen_resolution: string | null
+          session_end: string | null
+          session_id: string | null
+          session_start: string | null
+          user_agent: string | null
+          visited_at: string
+          visitor_id: string | null
+        }
+        Insert: {
+          browser?: string | null
+          city?: string | null
+          country?: string | null
+          device_type?: string | null
+          id?: string
+          ip_address?: unknown | null
+          language?: string | null
+          operating_system?: string | null
+          page_url?: string | null
+          referrer?: string | null
+          screen_resolution?: string | null
+          session_end?: string | null
+          session_id?: string | null
+          session_start?: string | null
+          user_agent?: string | null
+          visited_at?: string
+          visitor_id?: string | null
+        }
+        Update: {
+          browser?: string | null
+          city?: string | null
+          country?: string | null
+          device_type?: string | null
+          id?: string
+          ip_address?: unknown | null
+          language?: string | null
+          operating_system?: string | null
+          page_url?: string | null
+          referrer?: string | null
+          screen_resolution?: string | null
+          session_end?: string | null
+          session_id?: string | null
+          session_start?: string | null
+          user_agent?: string | null
+          visited_at?: string
+          visitor_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      insert_visit: {
+        Args: {
+          visitor_id: string
+          session_id: string
+          session_start: string
+          session_end: string
+          ip_address: unknown
+          user_agent: string
+          device_type: string
+          browser: string
+          operating_system: string
+          screen_resolution: string
+          language: string
+          country: string
+          city: string
+          page_url: string
+          referrer: string
+        }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never
