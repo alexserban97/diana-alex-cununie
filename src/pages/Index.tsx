@@ -1,11 +1,11 @@
 
-import { CoupleSection } from '@/components/CoupleSection';
-import { EventsSection } from '@/components/EventsSection';
-import { GallerySection } from '@/components/GallerySection';
-import { GiftsSection } from '@/components/GiftsSection';
-import { HeroSection } from '@/components/HeroSection';
-import { Navigation } from '@/components/Navigation';
-import { RSVPSection } from '@/components/RSVPSection';
+import CoupleSection from '@/components/CoupleSection';
+import EventsSection from '@/components/EventsSection';
+import GallerySection from '@/components/GallerySection';
+import GiftsSection from '@/components/GiftsSection';
+import HeroSection from '@/components/HeroSection';
+import Navigation from '@/components/Navigation';
+import RSVPSection from '@/components/RSVPSection';
 import { usePageTracking } from '@/hooks/usePageTracking';
 import { useEffect, useState } from 'react';
 
