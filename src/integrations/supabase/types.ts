@@ -97,11 +97,21 @@ export type Database = {
           country: string | null
           device_type: string | null
           id: string
-          ip_address: unknown | null
+          ip_address: string | null
+          language: string | null
           operating_system: string | null
           page_url: string | null
           referrer: string | null
+          response_time: number | null
+          screen_resolution: string | null
+          session_duration: number | null
+          timezone: string | null
           user_agent: string | null
+          utm_campaign: string | null
+          utm_content: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          utm_term: string | null
           visited_at: string
         }
         Insert: {
@@ -110,11 +120,21 @@ export type Database = {
           country?: string | null
           device_type?: string | null
           id?: string
-          ip_address?: unknown | null
+          ip_address?: string | null
+          language?: string | null
           operating_system?: string | null
           page_url?: string | null
           referrer?: string | null
+          response_time?: number | null
+          screen_resolution?: string | null
+          session_duration?: number | null
+          timezone?: string | null
           user_agent?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
           visited_at?: string
         }
         Update: {
@@ -123,11 +143,21 @@ export type Database = {
           country?: string | null
           device_type?: string | null
           id?: string
-          ip_address?: unknown | null
+          ip_address?: string | null
+          language?: string | null
           operating_system?: string | null
           page_url?: string | null
           referrer?: string | null
+          response_time?: number | null
+          screen_resolution?: string | null
+          session_duration?: number | null
+          timezone?: string | null
           user_agent?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
           visited_at?: string
         }
         Relationships: []
@@ -194,7 +224,78 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      dashboard_visits: {
+        Row: {
+          browser: string | null
+          city: string | null
+          country: string | null
+          device_type: string | null
+          id: string | null
+          ip_address: string | null
+          language: string | null
+          operating_system: string | null
+          page_url: string | null
+          referrer: string | null
+          response_time: number | null
+          screen_resolution: string | null
+          session_duration: number | null
+          timezone: string | null
+          user_agent: string | null
+          utm_campaign: string | null
+          utm_content: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          utm_term: string | null
+          visited_at: string | null
+        }
+        Insert: {
+          browser?: string | null
+          city?: string | null
+          country?: string | null
+          device_type?: string | null
+          id?: string | null
+          ip_address?: string | null
+          language?: string | null
+          operating_system?: string | null
+          page_url?: string | null
+          referrer?: string | null
+          response_time?: number | null
+          screen_resolution?: string | null
+          session_duration?: number | null
+          timezone?: string | null
+          user_agent?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
+          visited_at?: string | null
+        }
+        Update: {
+          browser?: string | null
+          city?: string | null
+          country?: string | null
+          device_type?: string | null
+          id?: string | null
+          ip_address?: string | null
+          language?: string | null
+          operating_system?: string | null
+          page_url?: string | null
+          referrer?: string | null
+          response_time?: number | null
+          screen_resolution?: string | null
+          session_duration?: number | null
+          timezone?: string | null
+          user_agent?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
+          visited_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       insert_visit: {

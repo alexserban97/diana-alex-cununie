@@ -14,29 +14,29 @@ interface DeviceInfo {
 const getDeviceInfo = (): DeviceInfo => {
   const userAgent = navigator.userAgent;
   
-  // Detect device type
-  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
-  const isTablet = /iPad|Android(?!.*Mobile)/i.test(userAgent);
+  // Detect device type with improved mobile detection
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(userAgent);
+  const isTablet = /iPad|Android(?!.*Mobile)|Tablet|tablet/i.test(userAgent);
   
   let deviceType = 'Desktop';
   if (isTablet) deviceType = 'Tablet';
   else if (isMobile) deviceType = 'Mobile';
   
-  // Detect browser
+  // Detect browser with more accuracy
   let browser = 'Unknown';
-  if (userAgent.includes('Chrome')) browser = 'Chrome';
+  if (userAgent.includes('Edg')) browser = 'Edge';
+  else if (userAgent.includes('Chrome')) browser = 'Chrome';
   else if (userAgent.includes('Firefox')) browser = 'Firefox';
   else if (userAgent.includes('Safari')) browser = 'Safari';
-  else if (userAgent.includes('Edge')) browser = 'Edge';
-  else if (userAgent.includes('Opera')) browser = 'Opera';
+  else if (userAgent.includes('Opera') || userAgent.includes('OPR')) browser = 'Opera';
   
-  // Detect OS
+  // Detect OS with improved detection
   let operatingSystem = 'Unknown';
-  if (userAgent.includes('Windows')) operatingSystem = 'Windows';
-  else if (userAgent.includes('Mac')) operatingSystem = 'macOS';
+  if (userAgent.includes('Windows NT')) operatingSystem = 'Windows';
+  else if (userAgent.includes('Mac OS X')) operatingSystem = 'macOS';
   else if (userAgent.includes('Linux')) operatingSystem = 'Linux';
   else if (userAgent.includes('Android')) operatingSystem = 'Android';
-  else if (userAgent.includes('iOS')) operatingSystem = 'iOS';
+  else if (userAgent.includes('iPhone') || userAgent.includes('iPad')) operatingSystem = 'iOS';
   
   // Get screen resolution
   const screenResolution = `${screen.width}x${screen.height}`;
@@ -138,9 +138,13 @@ export const usePageTracking = () => {
           utm_source: utmParams.utm_source,
           utm_medium: utmParams.utm_medium,
           utm_campaign: utmParams.utm_campaign,
+          utm_term: utmParams.utm_term,
+          utm_content: utmParams.utm_content,
           response_time: Math.round(responseTime),
           session_duration: sessionDuration
         };
+        
+        console.log('Tracking visit data:', visitData);
         
         const { error } = await supabase
           .from('page_visits')

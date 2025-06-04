@@ -1,33 +1,39 @@
-import { useEffect, useState } from 'react';
+
+import { CoupleSection } from '@/components/CoupleSection';
+import { EventsSection } from '@/components/EventsSection';
+import { GallerySection } from '@/components/GallerySection';
+import { GiftsSection } from '@/components/GiftsSection';
+import { HeroSection } from '@/components/HeroSection';
+import { Navigation } from '@/components/Navigation';
+import { RSVPSection } from '@/components/RSVPSection';
 import { usePageTracking } from '@/hooks/usePageTracking';
-import { Button } from "@/components/ui/button"
+import { useEffect, useState } from 'react';
 
 const Index = () => {
   // Add page tracking
   usePageTracking();
 
-  const [mounted, setMounted] = useState(false)
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
-    <div className="flex flex-col min-h-screen bg-background lg:space-x-0">
-      <div className="flex-1 space-y-4 p-8 pt-6">
-        <div className="flex items-center justify-between space-y-2">
-          <h2 className="text-3xl font-bold tracking-tight">
-            Acesta este un landing page
-          </h2>
-          <div className="space-x-2">
-            <Button>
-              Vezi documentatia
-            </Button>
-          </div>
-        </div>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 to-purple-100">
+      <Navigation />
+      <HeroSection />
+      <CoupleSection />
+      <EventsSection />
+      <GallerySection />
+      <GiftsSection />
+      <RSVPSection />
     </div>
-  )
+  );
 };
 
 export default Index;

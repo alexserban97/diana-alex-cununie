@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -43,8 +42,9 @@ const AdminDashboard = () => {
   const fetchVisits = async () => {
     setIsLoading(true);
     try {
+      // Use the new consolidated view for consistent data
       let query = supabase
-        .from('page_visits')
+        .from('dashboard_visits')
         .select('*')
         .order('visited_at', { ascending: false });
 
@@ -71,7 +71,6 @@ const AdminDashboard = () => {
         return;
       }
 
-      // Convert ip_address from unknown to string
       const processedData = (data || []).map(visit => ({
         ...visit,
         ip_address: visit.ip_address?.toString() || 'N/A'
